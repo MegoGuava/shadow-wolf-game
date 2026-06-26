@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>影狼之境 Web Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="stage" aria-label="影狼之境遊戲區">
+      <header class="topbar">
+        <div>
+          <p class="kicker">Hidden Identity Card Battle</p>
+          <h1>影狼之境</h1>
+        </div>
+        <div class="top-actions">
+          <label class="select-wrap" for="player-count">人數
+            <select id="player-count">
+              <option value="5">5 人局</option>
+              <option value="6">6 人局</option>
+              <option value="7">7 人局</option>
+            </select>
+          </label>
+          <button id="new-game" class="primary">新局</button>
+        </div>
+      </header>
+
+      <section class="status-strip" aria-live="polite">
+        <div><span>回合</span><strong id="round-label">1</strong></div>
+        <div><span>目前行動</span><strong id="turn-label">族長</strong></div>
+        <div><span>勝利目標</span><strong id="goal-label">清除反叛者與異教徒</strong></div>
+      </section>
+
+      <section id="players" class="players" aria-label="玩家狀態"></section>
+
+      <section class="command-zone">
+        <div class="hand-panel">
+          <div class="panel-head">
+            <h2>手牌</h2>
+            <p id="hint">選擇一張牌，再指定目標。</p>
+          </div>
+          <div id="hand" class="hand" aria-label="玩家手牌"></div>
+          <div class="turn-controls">
+            <button id="draw-card">抽牌</button>
+            <button id="end-turn">結束回合</button>
+          </div>
+        </div>
+
+        <aside class="rules-panel">
+          <div class="panel-head">
+            <h2>局勢</h2>
+            <p id="result-text">部落議會尚未分裂到無法挽回。</p>
+          </div>
+          <div class="meters">
+            <div><span class="dot chief"></span>族長：只剩族長與長老，或獨自存活。</div>
+            <div><span class="dot elder"></span>長老：族長存活到最後。</div>
+            <div><span class="dot rebel"></span>反叛者：使族長理智歸零。</div>
+            <div><span class="dot heretic"></span>異教徒：先清空其他人，再擊敗族長。</div>
+          </div>
+        </aside>
+      </section>
+    </section>
+
+    <aside class="chronicle" aria-label="事件紀錄">
+      <div class="panel-head">
+        <h2>議會紀錄</h2>
+        <button id="clear-log" title="清空紀錄">清空</button>
+      </div>
+      <ol id="log"></ol>
+    </aside>
+  </main>
+
+  <template id="player-template">
+    <article class="player-card">
+      <button class="target-button" type="button"></button>
+      <div class="portrait-wrap"><img alt="角色卡圖"></div>
+      <div class="identity-badge"></div>
+      <div class="player-copy">
+        <h3></h3>
+        <p class="role-line"></p>
+        <div class="sanity" aria-label="理智值"></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="game.js"></script>
+</body>
+</html>
