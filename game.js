@@ -167,7 +167,7 @@ function renderPlayers() {
     node.querySelector(".role-line").textContent = p.id === 0 ? "公開身分：族長" : known;
     const badge = node.querySelector(".identity-badge");
     badge.textContent = p.revealed ? roleMeta[p.role].short : "?";
-    badge.classList.add(roleMeta[p.role].color);
+    badge.classList.add(p.revealed ? roleMeta[p.role].color : "hidden-role");
     const sanity = node.querySelector(".sanity");
     for (let i = 0; i < p.maxSanity; i++) {
       const h = document.createElement("span");
